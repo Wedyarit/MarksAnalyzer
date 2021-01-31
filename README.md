@@ -53,7 +53,7 @@ You can read the configuration file [here](options.py).
 
 # Appearance
 This is one example of how the final result of the program will look like.
-![](https://i.imgur.com/QnO7ZOI.png)
+![](https://i.imgur.com/lFIuovp.png)
 
 If the password or login was specified incorrectly, the program will display a corresponding message.
 ![](https://i.imgur.com/ESLaH27.png)
