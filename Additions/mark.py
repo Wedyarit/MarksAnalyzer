@@ -1,8 +1,8 @@
 import statistics
 
 from Utils.bcolors import BColors
-from options import Options
 from Utils.math import access
+from options import Options
 
 class Mark(object):
 	def __init__(self, subject):
@@ -19,7 +19,6 @@ class Mark(object):
 		self.view_marks_number = '0'
 		self.view_access = ''
 
-		self.gen_view()
 
 	def add_mark(self, mark):
 		self.values.append(int(mark))
@@ -30,27 +29,38 @@ class Mark(object):
 		self.mean = round(statistics.mean(self.values), 2)
 
 	def gen_view(self):
-		if self.mean != 0 and self.mean < Options.EXCELLENT_MARK:
+		if self.mean == 0:
+			self.view_subject = f'{BColors.GREEN}{self.subject}{BColors.ENDC}'
+			self.view_mean = f'{BColors.YELLOW}-{BColors.ENDC}'
+		elif self.mean < Options.EXCELLENT_MARK:
 			self.view_subject = f'{BColors.RED}{self.subject}{BColors.ENDC}'
 			self.view_mean = f'{BColors.RED}{format(self.mean, ".2f")}{BColors.ENDC}'
 		else:
 			self.view_subject = f'{BColors.GREEN}{self.subject}{BColors.ENDC}'
 			self.view_mean = f'{BColors.GREEN}{format(self.mean, ".2f")}{BColors.ENDC}'
 
-		for value in self.values:
-			if value == Options.MAX_MARK:
-				self.view_marks += f'{BColors.MAGENTA}{str(value)}{BColors.ENDC} '
-			elif value < Options.EXCELLENT_MARK:
-				self.view_marks += f'{BColors.RED}{str(value)}{BColors.ENDC} '
-			else:
-				self.view_marks += f'{BColors.GREEN}{str(value)}{BColors.ENDC} '
+		if len(self.values) == 0:
+			self.view_marks = f'{BColors.YELLOW}-{BColors.ENDC}'
+		else:
+			for value in self.values:
+				if value == Options.MAX_MARK:
+					self.view_marks += f'{BColors.MAGENTA}{str(value)}{BColors.ENDC} '
+				elif value < Options.EXCELLENT_MARK:
+					self.view_marks += f'{BColors.RED}{str(value)}{BColors.ENDC} '
+				else:
+					self.view_marks += f'{BColors.GREEN}{str(value)}{BColors.ENDC} '
 
 		if self.mean < Options.EXCELLENT_MARK and len(self.values) > 0:
 			self.access = access(self.values)
 
-		if self.access != 0:
+		if len(self.values) == 0:
+			self.view_access = f'{BColors.YELLOW}-{BColors.ENDC}'
+		elif self.access > 0:
 			self.view_access = f'{BColors.RED}{self.access}{BColors.ENDC}'
 		else:
 			self.view_access = f'{BColors.GREEN}{self.access}{BColors.ENDC}'
 
-		self.view_marks_number = f'{BColors.GREEN}{self.marks_number}{BColors.ENDC}'
+		if self.marks_number == 0:
+			self.view_marks_number = f'{BColors.YELLOW}{self.marks_number}{BColors.ENDC}'
+		else:
+			self.view_marks_number = f'{BColors.GREEN}{self.marks_number}{BColors.ENDC}'

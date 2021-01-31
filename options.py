@@ -1,6 +1,6 @@
 class Options:
-	LOGIN = 'your_login'
-	PASSWORD = 'your_password'
+	LOGIN = 'П-13'
+	PASSWORD = '19681968'
 
 	EXCELLENT_MARK = 8
 	MAX_MARK = 10
