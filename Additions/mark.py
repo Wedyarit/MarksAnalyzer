@@ -19,7 +19,6 @@ class Mark(object):
 		self.view_marks_number = '0'
 		self.view_access = ''
 
-
 	def add_mark(self, mark):
 		self.values.append(int(mark))
 		self.calculate()

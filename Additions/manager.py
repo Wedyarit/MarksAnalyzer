@@ -2,13 +2,13 @@ import statistics
 
 from prettytable import PrettyTable
 
+from Additions.browser import Browser
+from Additions.student import Student
 from Utils import bcolors
 from Utils.bcolors import BColors
-from Additions.student import Student
-from Additions.browser import Browser
 
 class Manager(object):
-	def __init__(self, student : Student):
+	def __init__(self, student: Student):
 		self.student = student
 		self.browser = Browser()
 		self.view = None
@@ -45,5 +45,6 @@ class Manager(object):
 
 		self.view = f'{BColors.BOLD}Ученик: {BColors.GREEN}{self.student.name}{BColors.ENDC}\n{BColors.BOLD}Средний балл среди предметов: {BColors.GREEN}{bcolors.mark_to_colored(round(statistics.mean(means), 2))}\n{table}'
 
-	def error_auth(self):
+	@staticmethod
+	def error_auth():
 		print(f'{BColors.RED}{BColors.BOLD}Ошибка авторизации: "Неверный логин или пароль"!{BColors.ENDC}')

@@ -6,4 +6,3 @@ class Student(object):
 		self.name = ''
 		self.marks = None
 		self.mean = 0
-
