@@ -5,13 +5,13 @@ The analyzer is designed to analyze the user's current assessments, calculate al
 
 # Features
 
-- Simple use
+- Simple to use
 - Automatic collection of data from the [school website](http://best.yos.kz/cabinet/)
 - Calculating the number of ratings
 - Calculating the average score for each subject
 - Calculation of the number of receiving 9 points before achieving the "Excellent" status
 - Calculation of the average score in all subjects
-- Greate appearence
+- Great appearance
 
 > Why do boring math when you can get others to do it for you?
 
