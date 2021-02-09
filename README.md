@@ -25,11 +25,9 @@ This is exactly what I thought when developing this program.
 
 # Installation
 
-There are several modules required for the program to work correctly.
-Install the dependencies and devDependencies and start the usage.
+There is th only module required for the program to work correctly. Install the dependencies and start the usage.
 
 ```sh
-$ pip install mechanicalsoup
 $ pip install bs4
 ```
 # Options

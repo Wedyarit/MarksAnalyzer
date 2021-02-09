@@ -1,28 +1,24 @@
 import bs4
-from mechanicalsoup import StatefulBrowser
+import requests
 
 from Additions.mark import Mark
 
 class Browser(object):
 	def __init__(self):
-		self.browser = StatefulBrowser()
+		self.session = requests.session()
 		self.page_content = None
 		self.subjects_number = 0
 
 	def login(self, student):
-		self.browser.open("http://best.yos.kz/cabinet/")
-		self.browser.select_form('form[method="post"]')
-		self.browser['login'] = student.login
-		self.browser['password'] = student.password
-
-		self.browser.submit_selected()
+		payload = {'login':student.login, 'password':student.password}
+		self.session.post('http://best.yos.kz/cabinet/', data=payload)
 
 	def is_authorized(self):
-		return bs4.BeautifulSoup(str(self.browser.get_current_page()), "html.parser").find("div", {"class":"error"}) is None
+		return self.page_content.find("div", {"class":"error"}) is None
 
 	def setup_page_content(self):
-		self.browser.open_relative('http://best.yos.kz/cabinet/?module=grades')
-		self.page_content = bs4.BeautifulSoup(str(self.browser.get_current_page()), "html.parser")
+		response = self.session.get('http://best.yos.kz/cabinet/?module=grades')
+		self.page_content = bs4.BeautifulSoup(response.text, "html.parser")
 
 	def get_student_name(self):
 		return self.page_content.find_all("div", {"class":"top-panel-name"})[0].getText()

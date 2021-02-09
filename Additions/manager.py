@@ -13,11 +13,10 @@ class Manager(object):
 		self.view = None
 
 		self.browser.login(self.student)
+		self.browser.setup_page_content()
 		if not self.browser.is_authorized():
 			self.error_auth()
 			exit()
-
-		self.browser.setup_page_content()
 
 		self.setup_student_name()
 		self.setup_student_marks()
