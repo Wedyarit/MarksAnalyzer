@@ -30,7 +30,6 @@ Install the dependencies and devDependencies and start the usage.
 
 ```sh
 $ pip install mechanicalsoup
-$ pip install prettytable
 $ pip install bs4
 ```
 # Options
