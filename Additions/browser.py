@@ -11,10 +11,8 @@ class Browser(object):
 
 	def login(self, student):
 		payload = {'login':student.login, 'password':student.password}
-		self.session.post('http://best.yos.kz/cabinet/', data=payload)
-
-	def is_authorized(self):
-		return self.page_content.find("div", {"class":"error"}) is None
+		response = self.session.post('http://best.yos.kz/cabinet/', data=payload)
+		return bs4.BeautifulSoup(response.text, 'html.parser').find("div", {"class":"error"}) is None
 
 	def setup_page_content(self):
 		response = self.session.get('http://best.yos.kz/cabinet/?module=grades')
