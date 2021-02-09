@@ -1,11 +1,10 @@
 import statistics
 
-from prettytable import PrettyTable
-
 from Additions.browser import Browser
 from Additions.student import Student
 from Utils import bcolors
 from Utils.bcolors import BColors
+from Utils.table import Table
 
 class Manager(object):
 	def __init__(self, student: Student):
@@ -31,7 +30,7 @@ class Manager(object):
 		self.student.marks = self.browser.get_student_marks()
 
 	def setup_view(self):
-		table = PrettyTable(['Предмет', 'Оценки', 'Кол-во оценок', 'Средний балл', 'До допуска'])
+		table = Table(['Предмет', 'Оценки', 'Кол-во оценок', 'Средний балл', 'До допуска'])
 
 		means = []
 		counter = 0

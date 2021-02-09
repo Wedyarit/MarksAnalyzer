@@ -1,7 +1,7 @@
 import statistics
 
 from Utils.bcolors import BColors
-from Utils.math import access
+from Utils.umath import access
 from options import Options
 
 class Mark(object):
